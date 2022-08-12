@@ -1,0 +1,3 @@
+node_modules/
+ChromeExtension/dist/scripts/
+ChromeExtension/dist/sw.js
