@@ -1,5 +1,4 @@
 import Dexie from 'dexie';
-//import profileSchema from '../models/profile';
 
 export const db = new Dexie('myDatabase');
 
@@ -15,4 +14,8 @@ db.version(1).stores({
 db.version(1).stores({
   //profiles: '++id, '+Object.keys(profileSchema.params).join(', ') // crear esquemas en vez de puro texto
   recorridoProfiles: '++id, totalProfiles, positionProfile'
+});
+
+db.version(1).stores({
+  recorridoNextPage: '++id, urls, positionPage'
 });

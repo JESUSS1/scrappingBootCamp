@@ -35,8 +35,8 @@ class ClsContactInfo{
         this.twitter = twitter;
     }
     guardar(objeto,callback){    
-        db.query("INSERT INTO contactInfo (id_profile,email,telefono,twitter) VALUES(?,?,?)",
-        [objeto.email,objeto.telefono,objeto.twitter],function(err,res){
+        db.query("INSERT INTO contactInfo (id_profile,email,telefono,twitter) VALUES(?,?,?,?)",
+        [objeto.id_profile,objeto.email,objeto.telefono,objeto.twitter],function(err,res){
             if(!err) {
                 console.log("contactInfo subido "+res)
                 callback(err,res);
@@ -104,7 +104,6 @@ class ClsExperienceTitles{
         this.fecha_fin = fecha_fin;
     }
     guardar(objeto,callback){    
-        console.log("profile "+objeto.id_experienceTitles);
         db.query("INSERT INTO experienceTitles (id_profile,nombre,enterprise,fecha_inicio,fecha_fin) VALUES(?,?,?,?,?)",
         [objeto.id_profile,objeto.nombre,objeto.enterprise,objeto.fecha_inicio,objeto.fecha_fin],function(err,res){
             if(!err) {

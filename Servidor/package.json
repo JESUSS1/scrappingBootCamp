@@ -4,13 +4,12 @@
   "description": "",
   "main": "src/servidor.js",
   "scripts": {
-    "start": "node src/servidor.js"
+    "start": "src/servidor.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "esbuild": "^0.15.1",
     "nodemon": "^2.0.19"
   },
   "dependencies": {
