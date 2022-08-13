@@ -1,6 +1,6 @@
 import {db} from './config/conexion.dexie'
 import {inyectarScript,inyectarScrapCandidatos,deleteAndCreateTab} from './utils/chromeFunciones'
-
+import FetchService from './servicios/funcionFetch';
 
 chrome.action.onClicked.addListener((tab)=> {
   console.log("Click");
@@ -44,10 +44,7 @@ chrome.runtime.onConnect.addListener((port)=> {
 
           //inyectarScrapCandidatos(tabId)
           
-      
           inyectarScript('scripts/scrapper.js',id);
-
-
         }
     
       });
@@ -60,8 +57,15 @@ chrome.runtime.onConnect.addListener((port)=> {
          //obtenemos la posicion actual e incrementamos en 1 , en referencia a las urls scrapeadas 
         let positionNext = parseInt(obtenerInfoRecorrido.positionProfile) +1;
         db.profiles.add(profile);
+        //console.log(profile.contactInfo.data);
+
+        jsonProfile = JSON.stringify(profile);
+        FetchService.createUrlProfiles(jsonProfile).catch(async err => {
+          
+        });
 
         //si la positionActual es mayor al total de perfiles registrados entonces ya no scrapearia mas
+       
         
         if(positionNext <= parseInt(obtenerInfoRecorrido.totalProfiles)){
           db.recorridoProfiles.update(1, {"positionProfile":positionNext});  //siempre modificaremos el primer registro, porque agregar mas no es necesario
